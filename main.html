@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Squid Game S2 - Download Hub</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0d0d0d, #1a1a1a);
+      color: #f1f1f1;
+      font-family: 'Segoe UI', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+      color: #e50914;
+      text-shadow: 0 0 10px #e5091470;
+    }
+
+    p {
+      color: #ccc;
+      margin-bottom: 30px;
+      font-size: 1.1rem;
+    }
+
+    .episode-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      width: 100%;
+      max-width: 1000px;
+    }
+
+    .episode {
+      background: #1f1f1f;
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0 0 15px rgba(229, 9, 20, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+    }
+
+    .episode:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 30px rgba(229, 9, 20, 0.4);
+    }
+
+    .episode-title {
+      font-size: 1.2rem;
+      margin-bottom: 15px;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .download-btn {
+      background: #e50914;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 50px;
+      font-size: 15px;
+      cursor: pointer;
+      transition: background 0.2s ease;
+      position: relative;
+      z-index: 1;
+    }
+
+    .download-btn:hover {
+      background: #ff1f2e;
+    }
+
+    .status {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #0f0;
+      display: none;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .bonus {
+      border: 1px solid #ffd700;
+      box-shadow: 0 0 20px #ffd70077;
+    }
+
+    .bonus .episode-title {
+      color: #ffd700;
+    }
+
+    footer {
+      margin-top: 50px;
+      color: #777;
+      font-size: 0.9rem;
+    }
+
+    .download-btn:focus {
+      outline: none;
+      box-shadow: 0 0 10px #e50914;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎬 Squid Game - Season 2</h1>
+  <p>Download all 7 episodes + bonus behind-the-scenes (Ep 7.5)</p>
+
+  <div class="episode-list" id="episodes-container"></div>
+
+  <footer>
+    &copy; 2025 | Not affiliated with Netflix or Squid Game, just a fan ❤️
+  </footer>
+
+  <script>
+    function startDownload(ep) {
+      const links = {
+        1: "https://dl02.kissdl.eu/e2cef06f-d4e9-4378-bd1e-3e80eb02be71.mp4",
+        2: "https://dl02.kissdl.eu/789285f3-babf-494a-a5c5-46908049f834.mp4",
+        3: "https://dl02.kissdl.eu/0a5ac948-b632-453f-b824-85f3f0c2a163.mp4",
+        4: "https://dl02.kissdl.eu/2d407312-9ce8-4279-aa85-b271ae66ee2e.mp4",
+        5: "https://dl02.kissdl.eu/49a88714-9786-4fb3-81ec-998c6a1a49af.mp4",
+        6: "https://dl02.kissdl.eu/c6ac069f-f924-46bb-9d68-4e732ef43674.mp4",
+        7: "https://dl02.kissdl.eu/b4fda72a-d5bb-4f8e-b6d5-3ea808d76c94.mp4",
+        75: "https://your-link.com/ep7_5_bonus.mp4"
+      };
+
+      const status = document.getElementById("status" + ep);
+      status.style.display = "block";
+      status.textContent = "⬇️ Starting download...";
+
+      setTimeout(() => {
+        status.textContent = "✅ Downloading...";
+        window.location.href = links[ep];
+      }, 1200);
+    }
+
+    // Inject episodes dynamically
+    const container = document.getElementById("episodes-container");
+    container.innerHTML = [...Array(7)].map((_, i) => `
+      <div class="episode">
+        <div class="episode-title">Episode ${i + 1}: Title Placeholder</div>
+        <button class="download-btn" onclick="startDownload(${i + 1})">Download</button>
+        <div class="status" id="status${i + 1}">⬇️ Starting download...</div>
+      </div>
+    `).join('') + `
+      <div class="episode bonus">
+        <div class="episode-title">Episode 7.5: Behind the Scenes 🎥</div>
+        <button class="download-btn" onclick="startDownload(75)">Download</button>
+        <div class="status" id="status75">⬇️ Starting download...</div>
+      </div>
+    `;
+  </script>
+
+</body>
+</html>
